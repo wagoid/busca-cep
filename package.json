@@ -1,0 +1,23 @@
+{
+  "name": "busca-cep",
+  "version": "0.1.0",
+  "author": {
+    "name": "Wagner Resende Santos",
+    "email": "w.rsantos@outlook.com",
+    "url": "https://github.com/wagoid/"
+  },
+  "description": "Busca por ceps do Brasil utilizando o serviço ViaCEP",
+  "dependencies": {
+    "request-promise": "^2.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wagoid/busca-cep.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}
