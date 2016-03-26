@@ -23,38 +23,56 @@ function isStringOrNumber (value) {
   return typeof value === 'string' || value instanceof String || !isNaN(value);
 }
 
+function getValidationMessage() {
+  return `The CEP should be a number or string of size ${CEP_SIZE}. Please check your parameter.`;
+}
+
+function getDataSync (cep) {
+  let ret;
+  try {
+    if (invalidCep(cep)) {
+      throw { message: getValidationMessage() };
+    }
+    ret = syncRequest('GET', `${VIACEP_URI}/ws/${cep}/json`);
+    ret = JSON.parse(ret.getBody()) || {};
+  } catch(e) {
+    ret = {
+      hasError: true,
+      statusCode: e.statusCode,
+      message: e.message
+    };
+  }
+  
+  return ret;
+}
+
+function getDataAsync (cep) {
+   return new Promise((resolve, reject) => {
+    if (invalidCep(cep)) {
+      reject({ message: getValidationMessage() });
+    } else {
+      callViaCep(cep)
+        .then(placeInfo => {
+          resolve(placeInfo);
+        })
+        .catch(err => {
+          reject( {statusCode: err.statusCode, message: err.error});
+        });
+    }
+  });
+}
+
 module.exports = function (cep, sync) {
   if (cep && isNaN(cep)) {
     cep = cep.replace(/[-\s]/g, '');
   }
   let ret;
   
-  if (sync) {
-    try {
-      ret = syncRequest('GET', `${VIACEP_URI}/ws/${cep}/json`);
-      ret = JSON.parse(ret.getBody()) || {};
-    } catch(e) {
-      ret = {
-        statusCode: e.statusCode,
-        error: e.message
-      };
-    }
+  if (sync === true || (arguments[1] && arguments[1].sync)) {
+    ret = getDataSync(cep);
   } else {
-    ret = new Promise((resolve, reject) => {
-      if (invalidCep(cep)) {
-        reject(`The CEP should be a number or string of size ${CEP_SIZE}. Please check your parameter.`);
-      } else {
-        callViaCep(cep)
-          .then(placeInfo => {
-            resolve(placeInfo);
-          })
-          .catch(err => {
-            reject( {statusCode: err.statusCode, error: err.error});
-          });
-      }
-    });
+    ret = getDataAsync(cep);
   }
   
   return ret;
-  
 };
