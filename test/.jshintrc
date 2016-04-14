@@ -1,0 +1,18 @@
+{
+    "undef": true,
+    "unused": true,
+    "node": true,
+    "esnext": true,
+    "globalstrict": false,
+    "expr": true,
+    "indent": 2,
+    "quotmark": true,
+    "smarttabs": true,
+    "trailing": true,
+    "globals": {
+        "it": true,
+        "describe": true,
+        "before": true,
+        "after": true
+    }
+}

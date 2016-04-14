@@ -31,7 +31,7 @@ function getDataSync (cep) {
   let ret;
   try {
     if (invalidCep(cep)) {
-      throw { message: getValidationMessage() };
+      throw new Error(getValidationMessage());
     }
     ret = syncRequest('GET', `${VIACEP_URI}/ws/${cep}/json`);
     ret = JSON.parse(ret.getBody()) || {};
@@ -56,13 +56,14 @@ function getDataAsync (cep) {
           resolve(placeInfo);
         })
         .catch(err => {
+          console.log(err);
           reject( {statusCode: err.statusCode, message: err.error});
         });
     }
   });
 }
 
-module.exports = function (cep, sync) {
+module.exports = function getZipCode(cep, sync) {
   if (cep && isNaN(cep)) {
     cep = cep.replace(/[-\s]/g, '');
   }
