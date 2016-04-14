@@ -73,7 +73,7 @@ describe('Zip search module', () => {
       .delay(1000)
       .reply(400, '<h2>Bad Request (400)</h2>');
     
-    var result = zipSearch('123456ab').catch(err => { console.log(err); return err.statusCode;});
+    var result = zipSearch('123456ab').catch(err => err.statusCode);
     return expect(result).to.eventually.equal(400);
   });
 });

@@ -56,7 +56,6 @@ function getDataAsync (cep) {
           resolve(placeInfo);
         })
         .catch(err => {
-          console.log(err);
           reject( {statusCode: err.statusCode, message: err.error});
         });
     }
