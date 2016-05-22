@@ -34,7 +34,7 @@ function getDataSync (cep) {
       throw new Error(getValidationMessage());
     }
     ret = syncRequest('GET', `${VIACEP_URI}/ws/${cep}/json`);
-    ret = JSON.parse(ret.getBody()) || {};
+    ret = JSON.parse(ret.getBody());
   } catch(e) {
     ret = {
       hasError: true,

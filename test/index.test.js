@@ -24,7 +24,6 @@ const DEFAULT_RESPONSE = {
 function makeDefaultNock(cep) {
   nock(VIACEP_URI)
     .get(`/ws/${cep || DEFAULT_CEP_REQ}/json`)
-    .delay(1000)
     .reply(200, DEFAULT_RESPONSE);
 }
 
@@ -70,7 +69,6 @@ describe('Zip search module', () => {
   it('Should handle wrong zip codes', () => {
     nock(VIACEP_URI)
       .get('/ws/123456ab/json')
-      .delay(1000)
       .reply(400, '<h2>Bad Request (400)</h2>');
     
     var result = zipSearch('123456ab').catch(err => err.statusCode);
