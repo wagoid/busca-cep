@@ -28,17 +28,17 @@ function makeDefaultNock(cep) {
 }
 
 describe('Zip search module', () => {
-  it('Should get a valid response when passing a valid zip code', () => {
-    makeDefaultNock();
-    var zipCode = zipSearch('31652130', true);
+  it('Should get a valid response when passing a valid zip code', (done) => {
+    var zipCode = zipSearch('31652130', true);  
     expect(zipCode).to.deep.equal(DEFAULT_RESPONSE);
-  });
+    done();
+  }).timeout(5000);
   
-  it('Should work when passing the sync parameter', () => {
-    makeDefaultNock();
+  it('Should work when passing the sync parameter', (done) => {
     var zipCode = zipSearch('31652130', { sync: true });
     expect(zipCode).to.deep.equal(DEFAULT_RESPONSE);
-  });
+    done();
+  }).timeout(5000);
   
   it('Should get a valid response when returning promise', () => {
     makeDefaultNock();
