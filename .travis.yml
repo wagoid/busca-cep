@@ -12,6 +12,7 @@ node_js:
 after_success: 'npm run coveralls'
 deploy:
     provider: npm
+    email: "w.rsantos@outlook.com"
     api_key:
       secure: QpwUPCSHggLF+V0WMQeX+DoaV4TcCNNlXPY1H+xCeVBCdXuT3eHnog8bUJN6+A6I5L2r1dB/VU40MB/G4AGWt+0dYLJxQz9/ziq5kHuGcQODrYkzu/q8OxALVr8OeAhcK/l0CROaQTUIx4a92isyp8djzDJ+n9iC50P/ChmAEH+Dgm4LiImpAqS5LASkJMT9NuLz5OlismI5fSO4Z3JDzFuVUa3ayhuFatYKrliNaCMArBM7yQwJfQNuRlC3f2aNV3JaTBRxRDQH70qELJK7h5WBLNAJdLOpF+6dOpfZjg67vxqXNAxizNWQ+Ove3w5BmflqjcKkW0iKoZpfVZdwaCbufWP31ykRkRGnZvCRX30T+/RpYMYjcJ4sqJ6GZ7npYgGRSqDe6wtkRlrSqmYHdxpLZu0uwKSLFFUih1pljkjAAuFwxiiKnGtAnPvNOihch2U3w8zAaV6fZnH4WvQgCekb10Wcer3vw0kzc1npfgT+SVtqGDFu0Q2ojsS0QIyvq/j7nXt+aumPWFRqt1zy+VfwqpydH49RgykjiZKvG2I/6ezRYfrreXU0+KxzzBhrt1RAVf8jQC9YMcg2xURHAcwldFHzQRzQOXebKg+0njROhL+ectbKFYVQZrp8gTn4gv146J+gwdO7JraKNx/cXKMMvoSI7SeYH5FAyw2E6io=
     on:
