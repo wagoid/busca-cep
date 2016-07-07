@@ -1,12 +1,12 @@
 'use strict';
 
-var requestPromise = require('request-promise');
-var syncRequest = require('sync-request');
+const requestPromise = require('request-promise'),
+      syncRequest = require('sync-request');
 
-const CEP_SIZE = 8;
-const VIACEP_URI = 'https://viacep.com.br';
+const CEP_SIZE = 8,
+      VIACEP_URI = 'https://viacep.com.br';
 
-function callViaCep(cep) {
+const callViaCep = cep => {
   let requestOptions = {
     json: true,
     uri: `${VIACEP_URI}/ws/${cep}/json`
@@ -15,19 +15,19 @@ function callViaCep(cep) {
   return requestPromise(requestOptions);
 }
 
-function invalidCep (cep) {
+const invalidCep = cep => {
   return !cep || !isStringOrNumber(cep) || cep.toString().length !== CEP_SIZE;
 }
 
-function isStringOrNumber (value) {
+const isStringOrNumber = value => {
   return typeof value === 'string' || value instanceof String || !isNaN(value);
 }
 
-function getValidationMessage() {
+const getValidationMessage = () => {
   return `The CEP should be a number or string of size ${CEP_SIZE}. Please check your parameter.`;
 }
 
-function getDataSync (cep) {
+const getDataSync = cep => {
   let ret;
   try {
     if (invalidCep(cep)) {
@@ -46,7 +46,7 @@ function getDataSync (cep) {
   return ret;
 }
 
-function getDataAsync (cep) {
+const getDataAsync = cep => {
    return new Promise((resolve, reject) => {
     if (invalidCep(cep)) {
       reject({ message: getValidationMessage() });
@@ -66,13 +66,7 @@ module.exports = function getZipCode(cep, sync) {
   if (cep && isNaN(cep)) {
     cep = cep.replace(/[-\s]/g, '');
   }
-  let ret;
-  
-  if (sync === true || (arguments[1] && arguments[1].sync)) {
-    ret = getDataSync(cep);
-  } else {
-    ret = getDataAsync(cep);
-  }
-  
-  return ret;
+  return (sync === true || (arguments[1] && arguments[1].sync)) ?
+    getDataSync(cep) :
+    getDataAsync(cep);
 };
