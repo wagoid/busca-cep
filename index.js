@@ -1,10 +1,10 @@
 'use strict';
-
+const _ = require('lodash');
+const config = require('./environment/index');
 const requestPromise = require('request-promise'),
       syncRequest = require('sync-request');
-
 const CEP_SIZE = 8,
-      VIACEP_URI = 'https://viacep.com.br';
+      VIACEP_URI = config.apiViaCep.url;
 
 const callViaCep = cep => {
   let requestOptions = {
@@ -62,8 +62,8 @@ const getDataAsync = cep => {
   });
 }
 
-module.exports = function getZipCode(cep, sync) {
-  if (cep && isNaN(cep)) {
+module.exports.getZipCode = (cep, sync) => {
+  if (!_.isEmpty(cep) && isNaN(cep)) {
     cep = cep.replace(/[-\s]/g, '');
   }
   return (sync === true || (arguments[1] && arguments[1].sync)) ?
