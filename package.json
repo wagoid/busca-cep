@@ -12,6 +12,7 @@
   },
   "description": "Busca por ceps do Brasil utilizando o serviço ViaCEP",
   "dependencies": {
+    "lodash": "^4.17.2",
     "request-promise": "^2.0.1",
     "sync-request": "^3.0.0"
   },
