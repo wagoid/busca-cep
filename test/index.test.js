@@ -29,7 +29,7 @@ function makeDefaultNock(cep) {
 
 describe('Zip search module', () => {
   it('Should get a valid response when passing a valid zip code', (done) => {
-    const zipCode = getDetailsByZipCode('31652130', true);  
+    const zipCode = getDetailsByZipCode('31652130', { sync: true });  
     expect(zipCode).to.deep.equal(DEFAULT_RESPONSE);
     done();
   }).timeout(5000);

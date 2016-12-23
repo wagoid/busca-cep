@@ -1,14 +1,11 @@
 language: node_js
 node_js:
     - 4.0.0
-    - 4.1.0
     - 4.1.1
-    - 5.0.0
-    - 5.1.0
     - 5.1.1
-    - 6.0.0
     - 6.1.0
     - 6.2.0
+    - 7.2.0
 after_success: 'npm run coveralls'
 deploy:
     provider: npm
