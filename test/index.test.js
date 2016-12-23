@@ -1,6 +1,6 @@
 'use strict';
 
-const index = require('../index');
+const getDetailsByZipCode = require('../index');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const nock = require('nock');
@@ -29,40 +29,40 @@ function makeDefaultNock(cep) {
 
 describe('Zip search module', () => {
   it('Should get a valid response when passing a valid zip code', (done) => {
-    const zipCode = index.getDetailsByZipCode('31652130', true);  
+    const zipCode = getDetailsByZipCode('31652130', true);  
     expect(zipCode).to.deep.equal(DEFAULT_RESPONSE);
     done();
   }).timeout(5000);
   
   it('Should work when passing the sync parameter', (done) => {
-    const zipCode = index.getDetailsByZipCode('31652130', true);
+    const zipCode = getDetailsByZipCode('31652130', true);
     expect(zipCode).to.deep.equal(DEFAULT_RESPONSE);
     done();
   }).timeout(5000);
   
   it('Should get a valid response when returning promise', () => {
     makeDefaultNock();
-    return expect(index.getDetailsByZipCode('31652130')).to.eventually.deep.equal(DEFAULT_RESPONSE);
+    return expect(getDetailsByZipCode('31652130')).to.eventually.deep.equal(DEFAULT_RESPONSE);
   });
   
   it('Should work when passing a zipCode with dash', () => {
     makeDefaultNock();
-    return expect(index.getDetailsByZipCode('31652-130')).to.eventually.deep.equal(DEFAULT_RESPONSE);
+    return expect(getDetailsByZipCode('31652-130')).to.eventually.deep.equal(DEFAULT_RESPONSE);
   });
   
   it('Should work when passing a number', () => {
     makeDefaultNock();
-    return expect(index.getDetailsByZipCode(31652130)).to.eventually.deep.equal(DEFAULT_RESPONSE);
+    return expect(getDetailsByZipCode(31652130)).to.eventually.deep.equal(DEFAULT_RESPONSE);
   });
   
   it('Should return an error message when passing wrong parameter', () => {
-    const result = index.getDetailsByZipCode('wrong', true);
+    const result = getDetailsByZipCode('wrong', true);
     expect(result.hasError).to.be.true;
     expect(result.message).to.equal('The CEP should be a number or string of size 8. Please check your parameter.'); 
   });
   
   it('Should return an error message when passing wrong parameter (async)', () => {
-    const result = index.getDetailsByZipCode('wrong').catch(err => err.message);
+    const result = getDetailsByZipCode('wrong').catch(err => err.message);
     return expect(result).to.eventually.equal('The CEP should be a number or string of size 8. Please check your parameter.'); 
   });
   
@@ -71,7 +71,7 @@ describe('Zip search module', () => {
       .get('/ws/123456ab/json')
       .reply(400, '<h2>Bad Request (400)</h2>');
     
-    const result = index.getDetailsByZipCode('123456ab').catch(err => err.statusCode);
+    const result = getDetailsByZipCode('123456ab').catch(err => err.statusCode);
     return expect(result).to.eventually.equal(400);
   });
 });

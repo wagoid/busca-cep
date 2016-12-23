@@ -62,7 +62,7 @@ const getDataAsync = cep => {
   });
 }
 
-module.exports.getDetailsByZipCode = (cep, sync) => {
+module.exports = function getDetailsByZipCode (cep, sync) {
   if (!_.isEmpty(cep) && isNaN(cep)) {
     cep = cep.replace(/[-\s]/g, '');
   }
