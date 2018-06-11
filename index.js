@@ -6,12 +6,12 @@ const requestPromise = require('request-promise'),
 const CEP_SIZE = 8,
       VIACEP_URI = config.apiViaCep.url;
 
-const callViaCep = cep => {
+const callViaCep = (cep, options) => {
   let requestOptions = {
     json: true,
-    uri: `${VIACEP_URI}/ws/${cep}/json`
+    uri: `${VIACEP_URI}/ws/${cep}/json`,
+    timeout: options ? options.timeout : 5000
   };
-
   return requestPromise(requestOptions);
 }
 
@@ -27,7 +27,7 @@ const getValidationMessage = () => {
   return `The CEP should be a number or string of size ${CEP_SIZE}. Please check your parameter.`;
 }
 
-const getDataSync = cep => {
+const getDataSync = (cep, options) => {
   let ret;
   try {
     if (invalidCep(cep)) {
@@ -46,12 +46,12 @@ const getDataSync = cep => {
   return ret;
 }
 
-const getDataAsync = cep => {
+const getDataAsync = (cep, options) => {
    return new Promise((resolve, reject) => {
     if (invalidCep(cep)) {
       reject({ message: getValidationMessage() });
     } else {
-      callViaCep(cep)
+      callViaCep(cep, options)
         .then(placeInfo => {
           resolve(placeInfo);
         })
@@ -62,11 +62,11 @@ const getDataAsync = cep => {
   });
 }
 
-module.exports = function getDetailsByZipCode (cep, sync) {
+module.exports = function getDetailsByZipCode (cep, sync, options) {
   if (!_.isEmpty(cep) && isNaN(cep)) {
     cep = cep.replace(/[-\s]/g, '');
   }
   return (sync === true || (arguments[1] && arguments[1].sync)) ?
-    getDataSync(cep) :
-    getDataAsync(cep);
+    getDataSync(cep, options) :
+    getDataAsync(cep, options);
 };
