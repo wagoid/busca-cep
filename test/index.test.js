@@ -29,13 +29,13 @@ function makeDefaultNock(cep) {
 
 describe('Zip search module', () => {
   it('Should get a valid response when passing a valid zip code', (done) => {
-    const zipCode = getDetailsByZipCode('31652130', { sync: true });  
+    const zipCode = getDetailsByZipCode('31652130', true);  
     expect(zipCode).to.deep.equal(DEFAULT_RESPONSE);
     done();
   }).timeout(5000);
   
   it('Should work when passing the sync parameter', (done) => {
-    const zipCode = getDetailsByZipCode('31652130', true);
+    const zipCode = getDetailsByZipCode('31652130', {sync: true});
     expect(zipCode).to.deep.equal(DEFAULT_RESPONSE);
     done();
   }).timeout(5000);
@@ -56,7 +56,7 @@ describe('Zip search module', () => {
   });
   
   it('Should return an error message when passing wrong parameter', () => {
-    const result = getDetailsByZipCode('wrong', true);
+    const result = getDetailsByZipCode('wrong', {sync: true});
     expect(result.hasError).to.be.true;
     expect(result.message).to.equal('The CEP should be a number or string of size 8. Please check your parameter.'); 
   });

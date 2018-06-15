@@ -27,7 +27,7 @@ const getValidationMessage = () => {
   return `The CEP should be a number or string of size ${CEP_SIZE}. Please check your parameter.`;
 }
 
-const getDataSync = (cep, options) => {
+const getDataSync = (cep) => {
   let ret;
   try {
     if (invalidCep(cep)) {
@@ -62,11 +62,11 @@ const getDataAsync = (cep, options) => {
   });
 }
 
-module.exports = function getDetailsByZipCode (cep, sync, options) {
+module.exports = function getDetailsByZipCode (cep, options) {
   if (!_.isEmpty(cep) && isNaN(cep)) {
     cep = cep.replace(/[-\s]/g, '');
   }
-  return (sync === true || (arguments[1] && arguments[1].sync)) ?
-    getDataSync(cep, options) :
+  return (options && options.sync === true) ?
+    getDataSync(cep) :
     getDataAsync(cep, options);
 };
