@@ -1,10 +1,6 @@
 {
   "name": "busca-cep",
-<<<<<<< 746fa0253a2b353941000bf8a6e69ef34df367c0
-  "version": "0.3.6",
-=======
   "version": "0.4.0",
->>>>>>> Atualizando versão
   "author": {
     "name": "Wagner Resende Santos",
     "email": "w.rsantos@outlook.com",
