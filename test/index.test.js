@@ -35,7 +35,7 @@ describe('Zip search module', () => {
   }).timeout(5000);
   
   it('Should work when passing the sync parameter', (done) => {
-    const zipCode = getDetailsByZipCode('31652130', {sync: true});
+    const zipCode = getDetailsByZipCode('31652130', true);
     expect(zipCode).to.deep.equal(DEFAULT_RESPONSE);
     done();
   }).timeout(5000);

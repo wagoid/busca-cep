@@ -66,7 +66,7 @@ module.exports = function getDetailsByZipCode (cep, options) {
   if (!_.isEmpty(cep) && isNaN(cep)) {
     cep = cep.replace(/[-\s]/g, '');
   }
-  return (options && options.sync === true) ?
+  return (options === true || (options && options.sync)) ?
     getDataSync(cep) :
     getDataAsync(cep, options);
 };
