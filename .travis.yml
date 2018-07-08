@@ -1,16 +1,16 @@
 language: node_js
 node_js:
-    - 4.0.0
-    - 4.1.1
-    - 5.1.1
-    - 6.1.0
-    - 6.2.0
-    - 7.2.0
-after_success: 'npm run coveralls'
+- 4.0.0
+- 4.1.1
+- 5.1.1
+- 6.1.0
+- 6.2.0
+- 7.2.0
+after_success: npm run coveralls
 deploy:
-    provider: npm
-    email: "w.rsantos@outlook.com"
-    api_key:
-      secure: QpwUPCSHggLF+V0WMQeX+DoaV4TcCNNlXPY1H+xCeVBCdXuT3eHnog8bUJN6+A6I5L2r1dB/VU40MB/G4AGWt+0dYLJxQz9/ziq5kHuGcQODrYkzu/q8OxALVr8OeAhcK/l0CROaQTUIx4a92isyp8djzDJ+n9iC50P/ChmAEH+Dgm4LiImpAqS5LASkJMT9NuLz5OlismI5fSO4Z3JDzFuVUa3ayhuFatYKrliNaCMArBM7yQwJfQNuRlC3f2aNV3JaTBRxRDQH70qELJK7h5WBLNAJdLOpF+6dOpfZjg67vxqXNAxizNWQ+Ove3w5BmflqjcKkW0iKoZpfVZdwaCbufWP31ykRkRGnZvCRX30T+/RpYMYjcJ4sqJ6GZ7npYgGRSqDe6wtkRlrSqmYHdxpLZu0uwKSLFFUih1pljkjAAuFwxiiKnGtAnPvNOihch2U3w8zAaV6fZnH4WvQgCekb10Wcer3vw0kzc1npfgT+SVtqGDFu0Q2ojsS0QIyvq/j7nXt+aumPWFRqt1zy+VfwqpydH49RgykjiZKvG2I/6ezRYfrreXU0+KxzzBhrt1RAVf8jQC9YMcg2xURHAcwldFHzQRzQOXebKg+0njROhL+ectbKFYVQZrp8gTn4gv146J+gwdO7JraKNx/cXKMMvoSI7SeYH5FAyw2E6io=
-    on:
-      tags: true
+  provider: npm
+  email: w.rsantos@outlook.com
+  api_key:
+    secure: jCne2AVZ0OSEn/a2NOhcKWgLlSTh1r5PQSKSFY3rO2wWrQpaVc+o4FOlgc1huzJcKU5p7dIPeVdinouQ4q/K+1tIs02Q1L+P3QFSyHZUoB5V0L/5xbjCQOi9jR8alg+ggVrPF7i05BhNL+6j0QiCJPUy9701BW57+Gu2ienS8oFOXJI09P4Z35BAbrNUJh2qCAorgw5MdcXYjMVzUFrQYNimYSyKykjr7/mEG5AYJQHrwbkGLeO3xS97/NIFFDmyVNlqpSf4jxn/RscaS00N1VGnbsCb7DgF7tV7yBKudny/ySqVGxvkVM50wP8MQiky+4MIZV0tBiN7gLhNrJfepDQ/jOStjvSfWyp73d0b91qhOtmFoUPVfwGSUS/cbCBhQJY0g7nOe1dj8HHP0RkGdpq+TOjG3f1sKrPtPjyheccjAZUkb4d6rd0qjoOkyjgoNjyxAftAAqi1+NhVMs20wLsjoIUZRPPmnrfQwVCE6mzZWUoZVQW0TNaUe9mkQXRIb0LhWQvtsNYD7QreFFvm5eTZtmWoxV6sLsSaKc1QKCxcG2mVIF50YN22LXOl5Jb1pOPZ2PoOgihxhMNTwW9rRCiim9PZpV36K5cM+BuVqZ0ZL53PHUxJ1zI/Knp+Guqy7WLmyVAH/OKwWlOCVvlb7RyxVTYC9qCfRrSX4VV9z7I=
+  on:
+    tags: true
