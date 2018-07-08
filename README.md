@@ -14,7 +14,7 @@ Busca por ceps do Brasil utilizando o serviço ViaCEP
 ```javascript
 var buscaCep = require('busca-cep');
 
-buscaCep('01001-000')
+buscaCep('01001-000', {sync: false, timeout: 1000}})
   .then(endereco => {
     console.log(endereco);
   })
@@ -26,12 +26,14 @@ buscaCep('01001-000')
 Ou, caso você queira uma requisição síncrona, passe true no segundo parâmetro:
 
 ```javascript
-var resposta = buscaCep('01001-000', true);//Também pode ser usado buscaCep('01001-000', {sync: true});
+var resposta = buscaCep('01001-000', {sync: true, timeout: 1000});
 if (!resposta.hasError) {
   console.log(resposta);
 } else {
   console.log(`Erro: statusCode ${resposta.statusCode} e mensagem ${resposta.message}`);
 }
+
+O terceiro parâmetro da função é um options, nele você você pode setar o valor do timeout do request (em milisegundos)
 ```
 
 Enjoy it!
