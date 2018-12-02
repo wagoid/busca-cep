@@ -14,7 +14,7 @@ Busca por ceps do Brasil utilizando o serviço ViaCEP
 ```javascript
 var buscaCep = require('busca-cep');
 
-buscaCep('01001-000', {sync: false, timeout: 1000}})
+buscaCep('01001-000', {sync: false, timeout: 1000})
   .then(endereco => {
     console.log(endereco);
   })
